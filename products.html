@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身产品</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffab40; /* 低饱和度橙色 */
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 水平居中 */
+            max-width: 1200px; /* 最大宽度 */
+            margin: 20px 0;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 15px;
+            width: 250px; /* 卡片宽度 */
+            text-align: center;
+            transition: transform 0.2s; /* 添加过渡效果 */
+        }
+
+        .product-card:hover {
+            transform: scale(1.05); /* 鼠标悬停时放大 */
+        }
+
+        .product-card img {
+            width: 100%; /* 图片宽度100% */
+            height: 150px; /* 图片高度 */
+            object-fit: cover; /* 保持图片比例并填充容器 */
+            border-radius: 5px; /* 图片圆角 */
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            color: #333; /* 深灰色文本 */
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>健身产品</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="exercises.html">健身动作示范</a></li>
+                <li><a href="records.html">健身记录</a></li>
+                <li><a href="diet.html">饮食日记</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>推荐的健身产品</h2>
+        <div class="product-container">
+            <!-- 健身器材 -->
+            <div class="product-card">
+                <img src="images/dumbbells.jpg" alt="哑铃">
+                <h3>哑铃</h3>
+                <p>可调节哑铃，适合各种训练。</p>
+                <p>价格: ¥399</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+            <div class="product-card">
+                <img src="images/yoga_mat.jpg" alt="瑜伽垫">
+                <h3>瑜伽垫</h3>
+                <p>环保材料，舒适耐用的瑜伽垫。</p>
+                <p>价格: ¥99</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+            <div class="product-card">
+                <img src="images/resistance_band.jpg" alt="拉力器">
+                <h3>拉力器</h3>
+                <p>多种阻力等级，适合全身训练。</p>
+                <p>价格: ¥149</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+
+            <!-- 营养补给 -->
+            <div class="product-card">
+                <img src="images/protein_powder.jpg" alt="蛋白粉">
+                <h3>蛋白粉</h3>
+                <p>高品质蛋白粉，助力肌肉增长。</p>
+                <p>价格: ¥299</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+            <div class="product-card">
+                <img src="images/supplements.jpg" alt="营养补剂">
+                <h3>营养补剂</h3>
+                <p>全面的营养补剂，提升身体素质。</p>
+                <p>价格: ¥199</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+            <div class="product-card">
+                <img src="images/energy_drink.jpg" alt="能量饮料">
+                <h3>能量饮料</h3>
+                <p>快速补充能量，提升运动表现。</p>
+                <p>价格: ¥29</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+            <div class="product-card">
+                <img src="images/fitness_guide.jpg" alt="健身教材">
+                <h3>健身教材</h3>
+                <p>专业健身指导教材，助你科学训练。</p>
+                <p>价格: ¥79</p>
+                <a href="product_details.html" class="button">查看详情</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+</body>
+</html>

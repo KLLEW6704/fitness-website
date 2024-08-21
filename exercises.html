@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身动作示范</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffab40; /* 低饱和度橙色 */
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        .exercise-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 水平居中 */
+            max-width: 1200px; /* 最大宽度 */
+        }
+
+        .exercise-item {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 15px;
+            width: 250px; /* 卡片宽度 */
+            text-align: center;
+        }
+
+        .exercise-item img {
+            width: 100%; /* 图片宽度100% */
+            height: 150px; /* 图片高度 */
+            object-fit: cover; /* 保持图片比例并填充容器 */
+            border-radius: 5px; /* 图片圆角 */
+        }
+
+        video {
+            width: 100%; /* 视频宽度100% */
+            height: auto; /* 高度自适应 */
+            border-radius: 5px; /* 视频圆角 */
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>健身动作示范</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">健身产品</a></li>
+                <li><a href="records.html">健身记录</a></li>
+                <li><a href="diet.html">饮食日记</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>选择你的训练类型</h2>
+        <div class="filter">
+            <label for="equipment">选择器械类型:</label>
+            <select id="equipment" onchange="filterExercises()">
+                <option value="all">所有动作</option>
+                <option value="equipment">有器械</option>
+                <option value="no-equipment">无器械</option>
+            </select>
+
+            <label for="muscleGroup">选择训练部位:</label>
+            <select id="muscleGroup" onchange="filterExercises()">
+                <option value="all">所有部位</option>
+                <option value="upper-body">上身</option>
+                <option value="lower-body">下身</option>
+                <option value="core">核心</option>
+            </select>
+        </div>
+
+        <div class="exercise-row" id="exerciseList">
+            <!-- 有器械动作 -->
+            <div class="exercise-item" data-type="equipment" data-muscle="upper-body">
+                <img src="images/barbell_bench_press.jpg" alt="杠铃卧推">
+                <h3>杠铃卧推</h3>
+                <p>平躺在长凳上，双手握住杠铃，慢慢降低至胸部，然后推起。</p>
+                <video controls>
+                    <source src="videos/barbell_bench_press.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="equipment" data-muscle="upper-body">
+                <img src="images/dumbbell_fly.jpg" alt="哑铃飞鸟">
+                <h3>哑铃飞鸟</h3>
+                <p>平躺在长凳上，双手各持一个哑铃，手臂张开后收回。</p>
+                <video controls>
+                    <source src="videos/dumbbell_fly.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="equipment" data-muscle="lower-body">
+                <img src="images/barbell_squat.jpg" alt="深蹲">
+                <h3>深蹲</h3>
+                <p>双手握住杠铃，放在肩膀后面，缓慢下蹲再站起。</p>
+                <video controls>
+                    <source src="videos/barbell_squat.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="equipment" data-muscle="lower-body">
+                <img src="images/deadlift.jpg" alt="硬拉">
+                <h3>硬拉</h3>
+                <p>双脚与肩同宽，双手握住杠铃，保持背部直立，缓慢拉起。</p>
+                <video controls>
+                    <source src="videos/deadlift.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="equipment" data-muscle="upper-body">
+                <img src="images/shoulder_press.jpg" alt="哑铃肩推">
+                <h3>哑铃肩推</h3>
+                <p>坐在长凳上，双手各持一个哑铃，从肩部推起。</p>
+                <video controls>
+                    <source src="videos/dumbbell_shoulder_press.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <!-- 无器械动作 -->
+            <div class="exercise-item" data-type="no-equipment" data-muscle="upper-body">
+                <img src="images/push_up.jpg" alt="俯卧撑">
+                <h3>俯卧撑</h3>
+                <p>双手撑地，身体保持直线，缓慢降低身体，再用力推起。</p>
+                <video controls>
+                    <source src="videos/push_up.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="lower-body">
+                <img src="images/bodyweight_squat.jpg" alt="深蹲">
+                <h3>深蹲</h3>
+                <p>双脚与肩同宽，缓慢下蹲，保持膝盖不超过脚尖，再站起。</p>
+                <video controls>
+                    <source src="videos/bodyweight_squat.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/plank.jpg" alt="平板支撑">
+                <h3>平板支撑</h3>
+                <p>双手撑地，身体保持直线，保持这个姿势尽可能长的时间。</p>
+                <video controls>
+                    <source src="videos/plank.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/mountain_climber.jpg" alt="登山者">
+                <h3>登山者</h3>
+                <p>双手撑地，交替将膝盖抬向胸部。</p>
+                <video controls>
+                    <source src="videos/mountain_climber.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/sit_up.jpg" alt="仰卧起坐">
+                <h3>仰卧起坐</h3>
+                <p>平躺在地上，双手放在耳边，抬起上半身。</p>
+                <video controls>
+                    <source src="videos/sit_up.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/high_knees.jpg" alt="高抬腿">
+                <h3>高抬腿</h3>
+                <p>站立，交替抬起膝盖至腰部高度。</p>
+                <video controls>
+                    <source src="videos/high_knees.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="lower-body">
+                <img src="images/lateral_lunge.jpg" alt="侧弓步">
+                <h3>侧弓步</h3>
+                <p>从站立位置向侧面弯曲一条腿，保持另一条腿直立。</p>
+                <video controls>
+                    <source src="videos/lateral_lunge.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/jumping_jacks.jpg" alt="跳跃开合">
+                <h3>跳跃开合</h3>
+                <p>站立，双腿并拢，跳起时双腿张开，落地时并拢。</p>
+                <video controls>
+                    <source src="videos/jumping_jacks.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="exercise-item" data-type="no-equipment" data-muscle="core">
+                <img src="images/russian_twist.jpg" alt="俄罗斯转体">
+                <h3>俄罗斯转体</h3>
+                <p>坐在地上，双腿抬起，双手握拳交替转动。</p>
+                <video controls>
+                    <source src="videos/russian_twist.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        function filterExercises() {
+            const equipmentFilter = document.getElementById('equipment').value;
+            const muscleGroupFilter = document.getElementById('muscleGroup').value;
+            const exercises = document.querySelectorAll('.exercise-item');
+
+            exercises.forEach(exercise => {
+                const typeMatch = (equipmentFilter === 'all' || exercise.getAttribute('data-type') === equipmentFilter);
+                const muscleMatch = (muscleGroupFilter === 'all' || exercise.getAttribute('data-muscle') === muscleGroupFilter);
+
+                if (typeMatch && muscleMatch) {
+                    exercise.style.display = 'block'; // 显示
+                } else {
+                    exercise.style.display = 'none'; // 隐藏
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身网站</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffab40; /* 低饱和度橙色 */
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 水平居中 */
+            max-width: 1200px; /* 最大宽度 */
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 400px; /* 卡片宽度 */
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%; /* 图片宽度100% */
+            height: 250px; /* 图片高度 */
+            object-fit: cover; /* 保持图片比例并填充容器 */
+            border-radius: 5px; /* 图片圆角 */
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>健身网站</h1>
+        <nav>
+            <ul>
+                <li><a href="products.html">健身产品</a></li>
+                <li><a href="exercises.html">健身动作示范</a></li>
+                <li><a href="records.html">健身记录</a></li>
+                <li><a href="diet.html">饮食日记</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>欢迎来到健身网站</h2>
+        <p>在这里你可以找到健身产品、动作示范、记录你的进度，以及饮食日记。</p>
+
+        <div class="card-container">
+            <div class="card">
+                <img src="images/fitness_equipment.jpg" alt="健身产品">
+                <h3>健身产品</h3>
+                <p>探索各种健身器材和产品,提升你的健身效果。</p>
+                <a href="products.html">查看产品</a>
+            </div>
+            <div class="card">
+                <img src="images/exercise_demonstration.jpg" alt="健身动作示范">
+                <h3>健身动作示范</h3>
+                <p>观看专业教练示范各种健身动作,确保你正确执行。</p>
+                <a href="exercises.html">查看示范</a>
+            </div>
+            <div class="card">
+                <img src="images/fitness_tracking.jpg" alt="健身记录">
+                <h3>健身记录</h3>
+                <p>记录你的健身进度,跟踪你的成长。</p>
+                <a href="records.html">记录进度</a>
+            </div>
+            <div class="card">
+                <img src="images/healthy_diet.jpg" alt="饮食日记">
+                <h3>饮食日记</h3>
+                <p>记录你的饮食习惯,帮助你保持健康饮食。</p>
+                <a href="diet.html">查看饮食</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+</body>
+</html>

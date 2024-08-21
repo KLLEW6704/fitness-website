@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身记录</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffab40; /* 低饱和度橙色 */
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+        }
+
+        .fitness-plan, .nutrition-strategy, .calendar, .calculator {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px; /* 最大宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* 包含内边距和边框 */
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 7列 */
+            gap: 5px; /* 间距 */
+            width: 100%;
+            max-width: 400px; /* 最大宽度 */
+        }
+
+        .calendar-day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>健身记录</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">健身产品</a></li>
+                <li><a href="exercises.html">健身动作示范</a></li>
+                <li><a href="diet.html">饮食日记</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="calendar">
+            <h3>健身记录日历</h3>
+            <div id="calendarGrid" class="calendar-grid"></div>
+        </div>
+
+        <div class="fitness-plan">
+            <h3>智能个人健身计划设计</h3>
+            <label for="weight">体重 (kg):</label>
+            <input type="number" id="weight" placeholder="输入体重">
+            <label for="height">身高 (cm):</label>
+            <input type="number" id="height" placeholder="输入身高">
+            <label for="fitnessHistory">有无健身历史:</label>
+            <select id="fitnessHistory">
+                <option value="yes">有</option>
+                <option value="no">无</option>
+            </select>
+            <label for="equipmentAvailable">有无器材:</label>
+            <select id="equipmentAvailable">
+                <option value="yes">有</option>
+                <option value="no">无</option>
+            </select>
+            <label for="muscleGroup">选择训练部位:</label>
+            <select id="muscleGroup">
+                <option value="all">所有部位</option>
+                <option value="upper-body">上身</option>
+                <option value="lower-body">下身</option>
+                <option value="core">核心</option>
+            </select>
+            <button onclick="generatePlan()">生成健身计划</button>
+            <div id="fitnessPlanResult"></div>
+        </div>
+
+        <div class="nutrition-strategy">
+            <h3>健身策略推荐</h3>
+            <p>根据你的目标和健身习惯，选择适合你的饮食和训练策略。</p>
+            <ul>
+                <li>生酮饮食：适合想要减少体脂的人。</li>
+                <li>间歇性断食：适合想要控制热量摄入的人。</li>
+                <li>高蛋白饮食：适合增肌和恢复的人。</li>
+            </ul>
+        </div>
+
+        <div class="calculator">
+            <h3>运动消耗量计算器</h3>
+            <label for="exercise">选择运动:</label>
+            <select id="exercise">
+                <option value="push_up">俯卧撑</option>
+                <option value="squat">深蹲</option>
+                <option value="running">跑步</option>
+                <option value="cycling">骑自行车</option>
+                <option value="yoga">瑜伽</option>
+                <option value="jumping_jacks">跳跃开合</option>
+                <option value="burpees">波比跳</option>
+                <option value="plank">平板支撑</option>
+                <option value="deadlift">硬拉</option>
+                <option value="bench_press">卧推</option>
+                <option value="dumbbell_fly">哑铃飞鸟</option>
+                <option value="mountain_climber">登山者</option>
+                <option value="high_knees">高抬腿</option>
+                <option value="lateral_lunge">侧弓步</option>
+                <option value="sit_up">仰卧起坐</option>
+                <option value="russian_twist">俄罗斯转体</option>
+            </select>
+            <label for="duration">运动时长 (分钟):</label>
+            <input type="number" id="duration" placeholder="输入时长">
+            <button onclick="calculateCalories()">计算消耗卡路里</button>
+            <p id="caloriesResult"></p>
+        </div>
+
+        <div id="recordModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <textarea id="dailyRecord" rows="4" placeholder="记录当天的训练动作..."></textarea>
+                <button onclick="saveDailyRecord()">保存记录</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        function generatePlan() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const fitnessHistory = document.getElementById('fitnessHistory').value;
+            const equipmentAvailable = document.getElementById('equipmentAvailable').value;
+            const muscleGroup = document.getElementById('muscleGroup').value;
+
+            // 生成健身计划的逻辑（示例）
+            let plan = `根据你的信息，推荐的健身计划如下：\n`;
+            plan += `体重: ${weight} kg, 身高: ${height} cm\n`;
+            plan += `健身历史: ${fitnessHistory}, 有无器材: ${equipmentAvailable}\n`;
+            plan += `训练部位: ${muscleGroup}\n`;
+
+            if (muscleGroup === 'upper-body') {
+                plan += `推荐动作: 俯卧撑、哑铃飞鸟、卧推\n`;
+            } else if (muscleGroup === 'lower-body') {
+                plan += `推荐动作: 深蹲、硬拉、侧弓步\n`;
+            } else if (muscleGroup === 'core') {
+                plan += `推荐动作: 平板支撑、仰卧起坐、俄罗斯转体\n`;
+            } else {
+                plan += `推荐动作: 结合上身、下身和核心训练\n`;
+            }
+
+            document.getElementById('fitnessPlanResult').innerText = plan;
+        }
+
+        function saveDailyRecord() {
+            const dailyEntry = document.getElementById('dailyRecord').value;
+            const savedRecordsDiv = document.getElementById('savedRecords');
+            savedRecordsDiv.innerHTML += `<p>${dailyEntry}</p>`;
+            document.getElementById('dailyRecord').value = ''; // 清空文本框
+            document.getElementById('recordModal').style.display = 'none'; // 关闭弹出窗口
+        }
+
+        function calculateCalories() {
+            const exercise = document.getElementById('exercise').value;
+            const duration = document.getElementById('duration').value;
+            let caloriesBurned = 0;
+
+            // 根据运动类型和时长计算消耗卡路里（示例）
+            switch (exercise) {
+                case 'push_up':
+                    caloriesBurned = duration * 5; // 每分钟消耗5卡路里
+                    break;
+                case 'squat':
+                    caloriesBurned = duration * 6; // 每分钟消耗6卡路里
+                    break;
+                case 'running':
+                    caloriesBurned = duration * 10; // 每分钟消耗10卡路里
+                    break;
+                case 'cycling':
+                    caloriesBurned = duration * 8; // 每分钟消耗8卡路里
+                    break;
+                case 'yoga':
+                    caloriesBurned = duration * 3; // 每分钟消耗3卡路里
+                    break;
+                case 'jumping_jacks':
+                    caloriesBurned = duration * 7; // 每分钟消耗7卡路里
+                    break;
+                case 'burpees':
+                    caloriesBurned = duration * 9; // 每分钟消耗9卡路里
+                    break;
+                case 'plank':
+                    caloriesBurned = duration * 4; // 每分钟消耗4卡路里
+                    break;
+                case 'deadlift':
+                    caloriesBurned = duration * 6; // 每分钟消耗6卡路里
+                    break;
+                case 'bench_press':
+                    caloriesBurned = duration * 6; // 每分钟消耗6卡路里
+                    break;
+                case 'dumbbell_fly':
+                    caloriesBurned = duration * 5; // 每分钟消耗5卡路里
+                    break;
+                case 'mountain_climber':
+                    caloriesBurned = duration * 8; // 每分钟消耗8卡路里
+                    break;
+                case 'high_knees':
+                    caloriesBurned = duration * 9; // 每分钟消耗9卡路里
+                    break;
+                case 'lateral_lunge':
+                    caloriesBurned = duration * 7; // 每分钟消耗7卡路里
+                    break;
+                case 'sit_up':
+                    caloriesBurned = duration * 5; // 每分钟消耗5卡路里
+                    break;
+                case 'russian_twist':
+                    caloriesBurned = duration * 6; // 每分钟消耗6卡路里
+                    break;
+            }
+
+            document.getElementById('caloriesResult').innerText = `你在此运动中消耗的卡路里: ${caloriesBurned} 卡路里`;
+        }
+
+        // 日历功能
+        function createCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const daysInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+            calendarGrid.innerHTML = '';
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.innerText = day;
+                dayDiv.onclick = function() {
+                    document.getElementById('recordModal').style.display = 'block'; // 显示弹出窗口
+                };
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        createCalendar(); // 创建日历
+
+        // 关闭弹出窗口的功能
+        const modal = document.getElementById('recordModal');
+        const span = document.getElementsByClassName('close')[0];
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

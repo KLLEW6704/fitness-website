@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: calc(100vh - 120px); /* 计算主内容区域高度 */
+            padding: 20px;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* 设置表单宽度为100% */
+            max-width: 400px; /* 设置表单最大宽度 */
+        }
+
+        form label {
+            margin: 10px 0 5px;
+            display: block; /* 使标签块级显示 */
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%; /* 输入框宽度100% */
+            margin-bottom: 15px; /* 输入框底部间距 */
+            box-sizing: border-box; /* 包含内边距和边框 */
+        }
+
+        form button {
+            padding: 10px;
+            background: #ffab40; /* 低饱和度橙色 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* 按钮宽度100% */
+        }
+
+        form button:hover {
+            background: #f39c12; /* 橙色按钮悬停效果 */
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>用户注册</h1>
+    </header>
+
+    <main>
+        <form id="registerForm">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" required>
+
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">密码:</label>
+            <input type="password" id="password" required>
+
+            <label for="confirmPassword">确认密码:</label>
+            <input type="password" id="confirmPassword" required>
+
+            <button type="submit">注册</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

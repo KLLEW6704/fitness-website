@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>饮食日记</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+
+        header {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffab40; /* 低饱和度橙色 */
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 600px; /* 最大宽度 */
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* 包含内边距和边框 */
+        }
+
+        .nutrition-record, .diet-strategies, .calculator {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px; /* 最大宽度 */
+        }
+
+        .nutrition-record h3, .diet-strategies h3 {
+            margin: 10px 0;
+        }
+
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* 包含内边距和边框 */
+        }
+
+        footer {
+            background: #4a90e2; /* 低饱和度蓝色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>饮食日记</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">健身产品</a></li>
+                <li><a href="exercises.html">健身动作示范</a></li>
+                <li><a href="records.html">健身记录</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>记录你的饮食习惯</h2>
+        <textarea id="dietDiary" rows="4" placeholder="在这里记录你的饮食习惯..."></textarea>
+        <button onclick="saveDiet()">保存饮食</button>
+        <div id="savedDiet"></div>
+
+        <div class="nutrition-record">
+            <h3>营养价值记录</h3>
+            <p>碳水化合物: <input type="number" id="carbs" placeholder="克数"></p>
+            <p>蛋白质: <input type="number" id="protein" placeholder="克数"></p>
+            <p>纤维素: <input type="number" id="fiber" placeholder="克数"></p>
+            <p>建议摄取量:</p>
+            <ul>
+                <li>碳水化合物: 300克</li>
+                <li>蛋白质: 60克</li>
+                <li>纤维素: 25克</li>
+            </ul>
+        </div>
+
+        <div class="diet-strategies">
+            <h3>饮食策略科普</h3>
+            <h4>生酮饮食</h4>
+            <p>生酮饮食是一种高脂肪、适量蛋白质、低碳水化合物的饮食方式。通过减少碳水化合物的摄入，迫使身体进入酮症状态，燃烧脂肪作为主要能量来源。</p>
+            <h4>间歇性断食</h4>
+            <p>间歇性断食是一种饮食模式，周期性地限制进食时间。常见的方式包括16/8法则（每天8小时进食，16小时禁食）和5:2法则（每周两天限制热量摄入）。</p>
+            <h4>高蛋白饮食</h4>
+            <p>高蛋白饮食强调增加蛋白质的摄入，帮助增加肌肉质量和饱腹感，适合进行力量训练的人群。</p>
+        </div>
+
+        <div class="calculator">
+            <h3>基础代谢计算器</h3>
+            <input type="number" id="weight" placeholder="体重 (kg)">
+            <input type="number" id="height" placeholder="身高 (cm)">
+            <input type="number" id="age" placeholder="年龄 (岁)">
+            <select id="gender">
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+            </select>
+            <button onclick="calculateBMR()">计算基础代谢率</button>
+            <p id="bmrResult"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 健身网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        function saveDiet() {
+            const dietEntry = document.getElementById('dietDiary').value;
+            const savedDietDiv = document.getElementById('savedDiet');
+            savedDietDiv.innerHTML += `<p>${dietEntry}</p>`;
+            document.getElementById('dietDiary').value = ''; // 清空文本框
+        }
+
+        function calculateBMR() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+
+            let bmr;
+            if (gender === 'male') {
+                bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            } else {
+                bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            }
+
+            document.getElementById('bmrResult').innerText = `基础代谢率: ${bmr.toFixed(2)} 卡路里/天`;
+        }
+    </script>
+</body>
+</html>
